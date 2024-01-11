@@ -1,25 +1,67 @@
-import logo from './logo.svg';
-import './App.css';
+// App.js
 
-function App() {
+import React, { useState } from 'react';
+import PersonalInformation from './PersonalInformation';
+import ContactInformation from './ContactInformation';
+import AccountSetup from './ AccountSetup';
+
+const App = () => {
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    dateOfBirth: '',
+    email: '',
+    phoneNumber: '',
+    username: '',
+    password: '',
+    confirmPassword: '',
+  });
+
+  const [currentStep, setCurrentStep] = useState(1);
+
+  const handleInputChange = (name, value) => {
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleNext = () => {
+    setCurrentStep(currentStep + 1);
+  };
+
+  const handlePrev = () => {
+    setCurrentStep(currentStep - 1);
+  };
+
+  const handleSubmit = () => {
+    console.log('Form submitted:', formData);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {currentStep === 1 && (
+        <PersonalInformation
+          data={formData}
+          onChange={handleInputChange}
+          onNext={handleNext}
+        />
+      )}
+      {currentStep === 2 && (
+        <ContactInformation
+          data={formData}
+          onChange={handleInputChange}
+          onNext={handleNext}
+          onPrev={handlePrev}
+        />
+      )}
+      {currentStep === 3 && (
+        <AccountSetup
+          data={formData}
+          onChange={handleInputChange}
+          onSubmit={handleSubmit}
+          onPrev={handlePrev}
+        />
+      )}
     </div>
   );
-}
+};
 
 export default App;
