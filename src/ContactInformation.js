@@ -45,43 +45,50 @@ const ContactInformation = ({ data, onChange, onNext, onPrev }) => {
   };
 
   return (
-    <div>
-      <h2>Step 2: Contact Information</h2>
-      <label>
+    <div className="max-w-md mx-auto p-4 bg-white rounded shadow-md">
+      <h2 className="text-2xl font-bold mb-4">Step 2: Contact Information</h2>
+      <label className="block mb-2">
         Email:
         <input
+          className="w-full border rounded py-2 px-3"
           type="email"
           name="email"
           value={data.email}
           onChange={handleInputChange}
         />
-        {errors.email && <div className="error">{errors.email}</div>}
+        {errors.email && <div className="text-red-500">{errors.email}</div>}
       </label>
       <br />
-      <label>
+      <label className="block mb-2">
         Phone Number:
         <input
+          className="w-full border rounded py-2 px-3"
           type="tel"
           name="phoneNumber"
           value={data.phoneNumber}
           onChange={handleInputChange}
         />
-        {errors.phoneNumber && <div className="error">{errors.phoneNumber}</div>}
+        {errors.phoneNumber && <div className="text-red-500">{errors.phoneNumber}</div>}
       </label>
       <br />
-      <label>
+      <label className="block mb-2">
         Password:
         <input
+          className="w-full border rounded py-2 px-3"
           type="password"
           name="password"
           value={data.password}
           onChange={handleInputChange}
         />
-        {errors.password && <div className="error">{errors.password}</div>}
+        {errors.password && <div className="text-red-500">{errors.password}</div>}
       </label>
       <br />
-      <button onClick={onPrev}>Previous</button>
-      <button onClick={handleSubmit}>Next</button>
+      <button className="bg-blue-500 text-white rounded py-2 px-4 mr-2" onClick={onPrev}>
+        Previous
+      </button>
+      <button className="bg-blue-500 text-white rounded py-2 px-4" onClick={handleSubmit}>
+        Next
+      </button>
     </div>
   );
 };

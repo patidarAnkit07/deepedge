@@ -1,11 +1,11 @@
-// App.js
-
 import React, { useState } from 'react';
 import PersonalInformation from './PersonalInformation';
 import ContactInformation from './ContactInformation';
 import AccountSetup from './ AccountSetup';
+import Modal from './Modal';
 
 const App = () => {
+  const [isModalOpen, setModalOpen] = useState(false);
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -33,6 +33,7 @@ const App = () => {
 
   const handleSubmit = () => {
     console.log('Form submitted:', formData);
+    setModalOpen(true);
   };
 
   return (
@@ -60,6 +61,9 @@ const App = () => {
           onPrev={handlePrev}
         />
       )}
+       {isModalOpen && <Modal
+       data={formData}
+       setModalOpen = {setModalOpen}/>}
     </div>
   );
 };
